@@ -1,0 +1,141 @@
+{block content}
+<script>
+$(document).ready(function(){
+ $('input').keyup(function(e){
+   if(e.which==40)
+   $(this).closest('tr').next().find('td:eq('+$(this).closest('td').index()+')').find('input').focus();
+  else if(e.which==38)
+   $(this).closest('tr').prev().find('td:eq('+$(this).closest('td').index()+')').find('input').focus();
+ });
+});
+</script>
+
+<div class="right_col" role="main" style="min-width: 1000px">
+         
+          
+           
+           
+            <div class="clearfix"></div>
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12" >
+                <div class="x_panel" >
+                  
+                  <div class="x_content" >
+                      
+                      
+                  <h3 n:block="jmeno">{$ucitel->titul} {$ucitel->jmeno} {$ucitel->prijmeni} <br><small>Definice úvazku</small></h3>
+{if $pocet_skupin->pocet!=0}
+<br>
+<h4>Skupiny</h4>
+<p>Tento učitel má definovány vyučované skupiny žáků. Bude moci přidávat známky všem žákům ve skupině.</p>
+
+    <table class="table table-striped"><thead><tr><th>Název skupiny</th><th style='text-align: center;'>Předmět</th><th style='text-align: center;'>Třída</th></tr></thead>
+    <tbody>
+    {foreach $skupiny as $skupina}    
+    <tr {if $iterator->odd}class='alt'{/if}><td><b>{$skupina->nazev_skupiny}</b></td><td style='text-align: center;'>{$skupina->nazev_predmetu}</td><td style='text-align: center;'>{$skupina->jmeno_tridy}.</td></tr>
+    
+    {/foreach}       
+    </tbody>
+    </table>
+
+<br><br>
+{/if}
+<h4>Vyučované předměty</h4>
+
+<table class='table table-striped'>
+    <thead><tr ><th>Předmět</th><th style=' text-align: center' colspan='{$tridypocet->pocet}'>Třídy</th></tr></thead>
+    {form defUvazek}
+    {foreach $predmety as $predmet}
+     <tr {if $iterator->odd}class='alt'{/if}>
+     <td><b>{$predmet->nazev}</b></td>
+     {foreach $tridy->fetchAll() as $trida}
+    
+     <td style='min-width:40px; text-align: center;{if (in_array($trida->id_tridy."_".$predmet->id_predmetu,$uvazekmajiny))}background-color:#00BFFF;{/if} {if (in_array($ucitel->id_users."_".$trida->id_tridy."_".$predmet->id_predmetu,$uvazekma) and ($_GET['ucitelId']==$ucitel->id_users))}background-color:lime;{/if}{if in_array($trida->id_tridy.'_'.$predmet->id_predmetu,$discheck)}background-color:yellow;{/if}'>
+         <abbr title='<?php echo "Předmět vyučuje:"; echo "\n" ?>{foreach $uvazekuci->fetchAll() as $uvazeku}{if $trida->id_tridy==$uvazeku->trida and $predmet->id_predmetu==$uvazeku->predmet}{$uvazeku->jmeno} {$uvazeku->prijmeni}<?php echo "\n"; ?>{/if}{/foreach}'>
+         {$trida->jmeno_tridy}<br><input  n:name="n_{$pom_check}" {if (in_array($ucitel->id_users."_".$trida->id_tridy."_".$predmet->id_predmetu,$uvazekma) and ($_GET['ucitelId']==$ucitel->id_users))} checked="checked" {/if}{if in_array($trida->id_tridy.'_'.$predmet->id_predmetu,$discheck)}onclick="return false" checked='checked'{/if}>
+     <input n:name="h_{$pom_check}" value="{$ucitel->id_users}_{$trida->id_tridy}_{$predmet->id_predmetu}">
+     </abbr>
+     </td>
+     
+     <?php $pom_check++ ?>
+     {/foreach} 
+     </tr>       
+     {/foreach}   
+     
+    <tr ><td colspan='{$tridypocet->pocet}' style='text-align:center;' >
+           
+            
+            
+      <input n:name="send" class="btn btn-success" ><input n:name="zpet"  class='btn btn-info'>
+        </td></tr>
+    
+    {/form}  
+    <tr><td colspan='{$tridypocet->pocet}' style='color:red; text-align:center; background:yellow; font-weight: bold'>
+        {foreach $flashes as $flash}
+    <div class="flash {$flash->type}" style='{if $flash->message=='Předměty byly definovány.'} color:green {/if}'>{$flash->message}</div>
+{/foreach}
+        
+        </td>
+    
+    </tr>
+    
+</table>   
+  
+
+                      
+                      <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2></h2>
+                    
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+
+                  
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="clearfix"></div>
+                      
+                      
+                      
+                     <!-- {control viteze, 10}-->
+                      
+                    <br />
+                    
+
+    
+<script>
+function myFunction(zak,znamka) {
+    document.getElementById(zak).value = document.getElementById(zak).value + znamka;
+}
+
+ function zpetNaSeznam(){
+            window.location = {$basePath} + "/uvazek/seznamucitelu";
+        }
+</script>
+
+
+</div>
+                    
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+
+
+   
+
+
+
+
+
+
+
+
+
+

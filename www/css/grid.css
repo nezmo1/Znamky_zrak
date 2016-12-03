@@ -1,0 +1,248 @@
+
+.grid{
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+.grid .grid-order .grid-order-up{
+    background: url("images/triangle-up.png") no-repeat;
+    width: 10px;
+    height: 7px;
+    display: block;
+}
+
+.grid .grid-order .grid-order-down{
+    background: url("images/triangle-down.png") no-repeat;
+    width: 10px;
+    height: 7px;
+    display: block;
+    margin-top: 1px;
+}
+
+.grid .grid-order .grid-order-active-up{
+    background: url("images/triangle-up-red.png") no-repeat;
+}
+
+.grid .grid-order .grid-order-active-down{
+    background: url("images/triangle-down-red.png") no-repeat;
+}
+
+
+
+.grid .grid-action-box{
+    float:left;
+}
+
+.grid .grid-action-box label{
+    float: left;
+    font-size: 14px;
+    line-height: 30px;
+    margin-right: 10px;
+}
+
+
+
+
+
+.grid .grid-perPage{
+    float:right;
+}
+
+.grid .grid-perPage label{
+    float: left;
+    font-size: 14px;
+    line-height: 30px;
+    margin-right: 10px;
+}
+
+.grid .grid-perPage select{
+    float: left;
+    width: 75px;
+    height: 26px;
+    margin-top: 2px;
+    border: 1px solid #ccc;
+}
+
+.grid .grid-perPage input[type="submit"]{
+     -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  background: #ababab;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+
+
+
+
+
+.grid .grid-filter-form{
+    height:34px;
+}
+
+
+
+
+
+.grid .grid-filter-form-active{
+    background-color: #F3F8FF;
+}
+
+.grid .grid-filter-form input[type="text"]{
+   
+    
+   
+  
+    border: 1px;
+    border-style: solid;
+    height: 30px;
+   line-height: 30px;
+}
+
+
+.grid .grid-filter-form select{
+    height: 30px;
+  line-height: 30px;
+}
+
+.grid .grid-filter-form input[type="submit"]{
+ 
+  color:white;
+  border-radius: 30px;
+  width: 100px;
+  padding:1em;
+  position:relative;
+   background: #ababab;
+  
+}
+
+
+
+.grid .grid-filter-reset{
+    width:24px;
+    height:24px;
+    background: url('images/cancel_white.png') no-repeat 3px;
+    display:block;
+    margin-left:71px;
+}
+
+.grid .grid-datepicker{
+    background: url("images/calendar.png") no-repeat right center;
+}
+
+.grid .grid-panel td, .grid-panel th{
+    border:0px solid #F0F;
+    padding:0;
+    margin:0;
+    
+}
+
+.grid .grid-button{
+    min-width: 24px;
+    min-height: 22px;
+    display: block;
+    float: left;
+}
+
+.ui-autocomplete{
+    padding:0;
+}
+
+.ui-menu-item{
+    text-align:left;
+    list-style:none;
+    margin-left:10px;
+    font-size:14px;
+}
+
+.grid input[type="text"].grid-editable{
+    padding:0px;
+    height:25px;
+    width:100%;
+    background-color:#FFF;
+    border: 1px solid #ccc;
+    font-size:14px;
+}
+
+.grid input[type="submit"].grid-editable{
+    height: 24px;
+    width: 70px;
+}
+
+.grid a.grid-rowForm-cancel{
+    border:0;
+    background: url("images/cancel_white.png") no-repeat scroll 3px 50% #0078FF;
+    display: block;
+    height: 24px;
+    margin-left: 71px;
+    width: 24px;
+}
+
+.grid select.grid-editable{
+    width:100%;
+    height:25px;
+    border: 1px solid #ccc;
+    font-size:14px;
+}
+
+.grid .grid-edited-cell{
+    background-color: #4894FF;
+}
+
+.grid .grid-subgrid-open{
+    background: url('images/subgrid_open.png') no-repeat 4px;
+}
+.grid .grid-subgrid-close{
+    background: url('images/subgrid_close.png') no-repeat 4px;
+}
+
+.grid .grid-add-row{
+    background: url('images/add.png') no-repeat 4px;
+}
+
+.grid-flash{
+    height: 30px;
+    text-align:left;
+}
+
+.grid-flash span{
+    color: #FFF;
+    padding-top: 4px;
+    padding-left: 20px;
+    font-weight:normal;
+}
+
+.grid-flash-hide{
+    float: right;
+    margin-right: 20px;
+    cursor: pointer;
+    background: url("images/cross.png") no-repeat;
+    width: 22px;
+    height: 22px;
+    display: block;
+}
+
+.grid-error{
+    background-color: #ef4040;
+}
+
+.grid-info{
+    background-color: #0078ff;
+}
+
+.grid-successful{
+    background-color: #25c319;
+}
