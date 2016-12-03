@@ -53,7 +53,58 @@ GROUP BY ucitele_uvazek.ucitel) ORDER BY predmet.nazev";
    
    
    
-     public function createTematickyPlan($values,$ucitel){
+     public function editTematickyPlan($values,$ucitel){
+             
+                  
+                  $date=date_create($values->datum);
+                  $datum=  date_format($date, 'Y-m-d');
+                    
+                    
+                  
+                  
+                  if($values->datum_end != ''){
+                    $date_konec=date_create($values->datum_end);
+                  $datum_konec=  date_format($date_konec, 'Y-m-d');  
+                  }
+                  else $datum_konec=NULL;
+                  
+                  
+                  
+                  
+                  
+                  
+                    
+                  $datumEnd= strtotime($datum);
+                  
+                  $datumEnd=date('Y-m-d',$datumEnd);
+                  
+                  
+                  
+                  
+               try {
+                   
+                  
+                   
+               if($datum_konec!=NULL){
+                    $this->database->query('UPDATE tematicky_plan SET ucivo = "',$values->ucivo,'", datum_start ="',$datum,'", datum_end="'.$datum_konec.'" WHERE id ='.$values->id_plan);
+              
+               }
+               else {
+                   $this->database->query('UPDATE tematicky_plan SET ucivo = "',$values->ucivo,'", datum_start ="',$datum,'" WHERE id ='.$values->id_plan);
+               }
+               
+                
+                return TRUE;   
+               } catch (Exception $ex) {
+                return FALSE;    
+               }
+           
+          }
+   
+   
+          
+          
+       public function createTematickyPlan($values,$ucitel){
              
                   $existPlan= $this->existPlan($values, $ucitel);
                   $date=date_create($values->datum);
@@ -97,15 +148,22 @@ GROUP BY ucitele_uvazek.ucitel) ORDER BY predmet.nazev";
                     
                    }
                    
+               if($datum_konec!=NULL){
+                    $this->database->query('INSERT INTO tematicky_plan SET ucitel = ',$ucitel, ', trida = ',$values->trida,', predmet = ',$values->predmet,', ucivo = "',$values->ucivo,'", datum_start ="',$datum,'", datum_end="'.$datum_konec.'"');
+              
+               }
+               else {
+                   $this->database->query('INSERT INTO tematicky_plan SET ucitel = ',$ucitel, ', trida = ',$values->trida,', predmet = ',$values->predmet,', ucivo = "',$values->ucivo,'", datum_start ="',$datum,'"');
+               }
                
-                $this->database->query('INSERT INTO tematicky_plan SET ucitel = ',$ucitel, ', trida = ',$values->trida,', predmet = ',$values->predmet,', ucivo = "',$values->ucivo,'", datum_start ="',$datum,'", datum_end="'.$datum_konec.'"');
+                
                 return TRUE;   
                } catch (Exception $ex) {
                 return FALSE;    
                }
            
-          }
-   
-   
+          }   
+          
+          
         
 }

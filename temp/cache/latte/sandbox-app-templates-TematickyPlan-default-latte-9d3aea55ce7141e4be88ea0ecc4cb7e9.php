@@ -2,13 +2,13 @@
 // source: E:\xampp2\htdocs\znamky_nette_zrak\sandbox\app/templates/TematickyPlan/default.latte
 
 // prolog Latte\Macros\CoreMacros
-list($_b, $_g, $_l) = $template->initialize('9854070244', 'html')
+list($_b, $_g, $_l) = $template->initialize('8224737514', 'html')
 ;
 // prolog Latte\Macros\BlockMacros
 //
 // block content
 //
-if (!function_exists($_b->blocks['content'][] = '_lb78a459c2f8_content')) { function _lb78a459c2f8_content($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
+if (!function_exists($_b->blocks['content'][] = '_lb7d07209e8d_content')) { function _lb7d07209e8d_content($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
 ?><script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/js/nette.forms.js"></script>
 <script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/js/nette.ajax.js"></script>
  <!-- FastClick -->
@@ -79,19 +79,10 @@ Nette.toggle = function (id, visible) {
 <?php $iterations++; } ?>
                   
                   
-                <h3 >Calendar <small>Click to add/edit events</small></h3>
+                <h3 >Tématický plán</h3>
               </div>
 
-              <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                  </div>
-                </div>
-              </div>
+              
             </div>
 
             <div class="clearfix"></div>
@@ -100,22 +91,8 @@ Nette.toggle = function (id, visible) {
               <div class="col-md-12">               
         <div class="x_panel">
                   <div class="x_title">
-                    <h2>Calendar Events <small>Sessions</small></h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
+                    <h2>Kalendář</h2>
+                   
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -260,31 +237,86 @@ Nette.toggle = function (id, visible) {
 
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h4 class="modal-title" id="myModalLabel2">Edit Calendar Entry</h4>
+            <h4 class="modal-title" id="myModalLabel2">Editovat tématický plán</h4>
           </div>
+<?php Nette\Bridges\FormsLatte\FormMacros::renderFormBegin($form = $_form = $_control["editTematickyPlan"], array()) ?>
           <div class="modal-body">
+              
+              <?php echo $_form["id_plan"]->getControl()->addAttributes(array('id' => 'id_plan')) ?>
 
-            <div id="testmodal2" style="padding: 5px 20px;">
-              <form id="antoform2" class="form-horizontal calender" role="form">
-                <div class="form-group">
-                  <label class="col-sm-3 control-label">Title</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="title2" name="title2">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-3 control-label">Description</label>
-                  <div class="col-sm-9">
-                    <textarea class="form-control" style="height:55px;" id="descr2" name="descr"></textarea>
-                  </div>
-                </div>
+                <table class="table table-stripped">
+                  <tr>
+                  <td><b>Název:</b>
+                   </td>
+                 <td>
+                    <input type="text" class="form-control" id="title2" name="title2" disabled="disabled">
+                
+                  </td>
+                  </tr>
+                  
+    
+          
+                  
+                  
+                   <tr>
+                  <td>
+                  <?php if ($_label = $_form["ucivo"]->getLabel()) echo $_label  ?>
 
-              </form>
-            </div>
+                  </td>
+                  <td>
+                  <?php echo $_form["ucivo"]->getControl()->addAttributes(array('class' => 'form-control', 'style' => 'width:100%', 'id'=>'ucivo')) ?>
+
+                  </td>
+                  </tr>
+                  
+                  
+                  
+                  
+                  
+                  <tr>
+                      
+                  <td>
+                   <div id="datum_label">   
+                  <?php if ($_label = $_form["datum"]->getLabel()) echo $_label  ?>
+
+                  </div>
+                  </td>
+                  <td style="width:400px;">
+                      <div id="datum">
+                  <?php echo $_form["datum"]->getControl()->addAttributes(array('class' => 'form-control single_cal2', 'style' => 'width:100%', 'id' =>'datum_start')) ?>
+
+                        </div>
+                      </td>
+                   
+                  </tr>
+                  
+                  
+                  <tr>
+                      
+                  <td>
+                   <div id="datum_label">   
+                  <?php if ($_label = $_form["datum_end"]->getLabel()) echo $_label  ?>
+<br> Použít datum konce <?php echo $_form["datum_end_check"]->getControl() ?>
+
+                  </div>
+                  </td>
+                  <td style="width:400px;">
+                      <div id="datum">
+                  <?php echo $_form["datum_end"]->getControl()->addAttributes(array('class' => 'form-control single_cal2', 'style' => 'width:100%', 'id'=> 'datum_end')) ?>
+
+                        </div>
+                      </td>
+                   
+                  </tr>
+                  
+              </table>    
+
+            
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default antoclose2" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary antosubmit2">Save changes</button>
+            <button type="button" class="btn btn-default antoclose2" data-dismiss="modal">Zavřít</button>
+            <button type="submit" class="btn btn-primary antosubmit2">Editovat</button>
+<?php Nette\Bridges\FormsLatte\FormMacros::renderFormEnd($_form) ?>
           </div>
         </div>
       </div>
@@ -354,9 +386,25 @@ Nette.toggle = function (id, visible) {
             });
           },
           eventClick: function(calEvent, jsEvent, view) {
-            $('#fc_edit').click();
+              if(calEvent.id==<?php echo Latte\Runtime\Filters::escapeJs($user->id) ?>){
+              $('#fc_edit').click();
+                }
+            
             $('#title2').val(calEvent.title);
-
+            $('#ucivo').val(calEvent.ucivo);
+            $('#id_plan').val(calEvent.idPlan);
+            $('#datum_start').val(calEvent.datumStart);
+            $('#datum_end').val(calEvent.datumEnd);
+          if(calEvent.datumEnd!=""){
+               $('#datum_end').slideDown();
+               $('#frm-editTematickyPlan-datum_end_check').prop('checked', true);
+              }
+            else{
+            $('#datum_end').hide();
+               $('#frm-editTematickyPlan-datum_end_check').prop('checked', false);
+                }
+            
+            
             categoryClass = $("#event_type").val();
 
             $(".antosubmit2").on("click", function() {
@@ -384,6 +432,15 @@ Nette.toggle = function (id, visible) {
                            backgroundColor: <?php echo Latte\Runtime\Filters::escapeJs($plan->predmet_barva_pozadi) ?>,
                            borderColor: <?php echo Latte\Runtime\Filters::escapeJs($plan->trida_barva_ramu) ?>,
                            className: 'planyBorder',
+                           id: <?php echo Latte\Runtime\Filters::escapeJs($plan->ucitel) ?>,
+                           ucivo: <?php echo Latte\Runtime\Filters::escapeJs($plan->ucivo) ?>,
+                           idPlan: <?php echo Latte\Runtime\Filters::escapeJs($plan->id) ?>,
+                           datumStart: <?php echo Latte\Runtime\Filters::escapeJs(date_format($plan->datum_start,"Y-m-d")) ?>,
+<?php if ($plan->datum_end==NULL) { ?>
+                             datumEnd: '',
+<?php } else { ?>
+                             datumEnd: <?php echo Latte\Runtime\Filters::escapeJs(date_format($plan->datum_end,"Y-m-d")) ?>,  
+<?php } ?>
                                 } ,
 <?php $iterations++; } ?>
                
@@ -449,7 +506,7 @@ Nette.toggle = function (id, visible) {
 //
 // block _predmet
 //
-if (!function_exists($_b->blocks['_predmet'][] = '_lbdb66b64120__predmet')) { function _lbdb66b64120__predmet($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v; $_control->redrawControl('predmet', FALSE)
+if (!function_exists($_b->blocks['_predmet'][] = '_lb1e15726602__predmet')) { function _lb1e15726602__predmet($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v; $_control->redrawControl('predmet', FALSE)
 ?> <?php echo $_form["predmet"]->getControl()->addAttributes(array('class' => 'form-control', 'style' => 'width:100%')) ;
 }}
 

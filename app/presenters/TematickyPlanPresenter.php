@@ -138,6 +138,62 @@ public function handleInvalidate($value) {
     
    
     
+     protected function createComponentEditTematickyPlan($name)
+	{
+     
+ 		$form = new Nette\Application\UI\Form;
+            
+            //    $action_pom='Znamka:novaznamka?tridac='.$tridac;
+            // $form->setAction($this->presenter->link($action_pom));
+
+                
+		
+               
+                 $form->addHidden('id_plan');
+                $form->addText('ucivo', 'Učivo:')
+                        ->setAttribute('placeholder', 'např. Žahavci - nezmaři')
+			->setRequired('Zadejte učivo');
+                 $form->addText('datum', 'Datum začátku:')
+                        ->setAttribute('placeholder', 'Datum')
+                         ->setAttribute('readonly', 'readonly')
+			->setRequired('Zadejte datum');
+                 $form->addText('datum_end', 'Datum konce:')
+                        ->setAttribute('placeholder', 'Nezobrazuje se včetně v kalendáři - Nepovinné')
+                        ->setAttribute('readonly', 'readonly');
+                 $form->addCheckbox('datum_end_check') 
+                         ->addCondition($form::EQUAL, TRUE)
+			  ->toggle('datum_end');
+                        
+               
+                 $form->addSubmit('submit', 'Editovat');
+		// call method signInFormSucceeded() on success
+		$form->onSuccess[] = $this->editTematickyPlan;
+                
+                
+ 
+
+
+		return $form;
+	}
+    
+    public function editTematickyPlan($form, $values){
+        $ucitel=$this->getUser();
+        $result = $this->context->TematickyPlanRepository->editTematickyPlan($values, $ucitel->id);
+        
+        
+       
+        if($result==TRUE){
+            $this->flashMessage('Tématický plán byl úspěšně editován.','success');
+        }
+        elseif($result==FALSE){
+            $this->flashMessage('Tématický plán se nepodařilo editovat.','error');
+        }
+        
+        
+    }
+    
+    
+    
 
  
 }

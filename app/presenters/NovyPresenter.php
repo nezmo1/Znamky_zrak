@@ -168,7 +168,7 @@ $renderer->wrappers['control']['.submit'] = 'login-prehled';
                 else {
                     
                     if($this->database->query('INSERT INTO trida SET jmeno_tridy="'.$values->jmeno_tridy.'", zkratka_tridy= "'.$values->zkratka_tridy.'", barva_ramu = "'.$values->barva_ramu.'"')){
-                     $flashMessage = $this->flashMessage('Třída byla úspěšně přidána do databáze.','succes');    
+                     $flashMessage = $this->flashMessage('Třída byla úspěšně přidána do databáze.','success');    
                     }
                     else {
                      $flashMessage = $this->flashMessage('Chyba databáze na straně serveru, třída nebyla přidána!','error');    
