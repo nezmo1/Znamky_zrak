@@ -54,6 +54,8 @@ class Menu extends Nette\Application\UI\PresenterComponent
 
                    $url = $this->presenter->link('Seznam:cvZak');
                     echo ' <li><a href="'.$url.'"><i class="fa fa-book"></i>Seznam čtvrtletní klasifikace</a></li>'; 
+                     $url = $this->presenter->link('TematickyPlan:zak');
+             echo'  <li><a href="'.$url.'"><i class="fa fa-calendar"></i>Tématický plán</a></li>';
                    }
            
         // menu učitelé
@@ -102,12 +104,22 @@ class Menu extends Nette\Application\UI\PresenterComponent
               
               echo'  <li><a><i class="fa fa-book"></i>Sestavy<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="'.$url.'">Seznam známek</a></li></ul>';
+                      <li><a href="'.$url.'">Seznam známek</a></li>';
+              $url = $this->presenter->link('Sestavy:cvpredmety?ctvrtleti=ctvrtleti_1'); 
+              echo '<li><a href="'.$url.'">1. čtvrtletí</a></li>';
+              $url = $this->presenter->link('Sestavy:cvpredmety?ctvrtleti=ctvrtleti_2'); 
+              echo '<li><a href="'.$url.'">2. čtvrtletí</a></li>';
+              $url = $this->presenter->link('Sestavy:cvpredmety?ctvrtleti=ctvrtleti_3'); 
+              echo '<li><a href="'.$url.'">3. čtvrtletí</a></li>';
+              $url = $this->presenter->link('Sestavy:cvpredmety?ctvrtleti=ctvrtleti_4'); 
+              echo '<li><a href="'.$url.'">4. čtvrtletí</a></li>';
+              echo '</ul>';
           
              $url = $this->presenter->link('TematickyPlan:default');
              echo'  <li><a href="'.$url.'"><i class="fa fa-calendar"></i>Tématický plán</a></li>';
                     
-                      
+             $url = $this->presenter->link('Prehled:portal');
+          echo '   <li><a href="'.$url.'"><i class="fa fa-laptop"></i> Přehled školy</a></li>';           
               
             }
              
@@ -117,8 +129,7 @@ class Menu extends Nette\Application\UI\PresenterComponent
                    if(($user->isInRole('4')) or ($user->isInRole('3'))){
         
            echo    '<br><h3>Správa</h3><br>';        
-          $url = $this->presenter->link('Prehled:portal');
-          echo '   <li><a href="'.$url.'"><i class="fa fa-laptop"></i> Přehled školy</a></li>';            
+                    
                        
         
           $url = $this->presenter->link('Uvazek:seznamucitelu');

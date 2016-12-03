@@ -43,6 +43,23 @@ WHERE ucitele_uvazek.ucitel = ".$ucitel."
 GROUP BY ucitele_uvazek.ucitel) ORDER BY predmet.nazev";
         return   ($this->database->query($query)->fetchAll());
        }
+       
+       
+         public function VyberTematickyPlanZak($zak){
+            $query="SELECT tematicky_plan.*, predmet.barva_textu as `predmet_barva_textu`, predmet.barva_pozadi as
+`predmet_barva_pozadi`, predmet.zkratka_predmetu as `zkratka_predmetu`, trida.jmeno_tridy AS
+`jmeno_tridy`, trida.barva_ramu as `trida_barva_ramu`, users.prijmeni as `prijmeni`, CONCAT(`jmeno_tridy`,'  |  ',`zkratka_predmetu`,' - ',tematicky_plan.ucivo,' (',LEFT(`prijmeni`,3),')')  AS `cely_popis`
+FROM `tematicky_plan`
+INNER JOIN predmet on tematicky_plan.predmet=predmet.id_predmetu
+INNER JOIN trida on tematicky_plan.trida=trida.id_tridy
+INNER JOIN users on tematicky_plan.ucitel=users.id_users
+WHERE tematicky_plan.trida IN (
+SELECT users.trida 
+FROM users    
+WHERE users.id_users = ".$zak."
+GROUP BY users.id_users) ORDER BY predmet.nazev";
+        return   ($this->database->query($query)->fetchAll());
+       }
         
    public function existPlan($values, $ucitel){
        

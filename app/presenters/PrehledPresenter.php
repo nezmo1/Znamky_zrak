@@ -47,7 +47,7 @@ class PrehledPresenter extends BasePresenter
     public function renderPortal()
     {
                  $user =  $this->getUser();
-    if ((!$user->isInRole('4')) and (!$user->isInRole('3')) ) {
+    if ((!$user->isInRole('4')) and (!$user->isInRole('3')) and (!$user->isInRole('2'))) {
              $this->redirect('Pristup:pristup');
        }
         $this->template->reditel = $this->database->table('nastaveni_global')->where('parametr_1','reditel_skoly')->where('parametr_2',$user->id)->fetch();
@@ -60,7 +60,7 @@ class PrehledPresenter extends BasePresenter
     {
                  $user =  $this->getUser();
              $reditel=  $this->database->table('nastaveni_global')->where('parametr_1','reditel_skoly')->where('parametr_2',$user->id)->fetch();  
-    if ((!$user->isInRole('4')) and $reditel==FALSE ) {
+   if ((!$user->isInRole('4')) and (!$user->isInRole('3')) and (!$user->isInRole('2'))) {
              $this->redirect('Pristup:pristup');
        }
        
@@ -90,7 +90,7 @@ class PrehledPresenter extends BasePresenter
     {
                  $user =  $this->getUser();
              $reditel=  $this->database->table('nastaveni_global')->where('parametr_1','reditel_skoly')->where('parametr_2',$user->id)->fetch();  
-    if ((!$user->isInRole('4')) and $reditel==FALSE ) {
+   if ((!$user->isInRole('4')) and (!$user->isInRole('3')) and (!$user->isInRole('2'))) {
              $this->redirect('Pristup:pristup');
        }
        
@@ -125,7 +125,7 @@ class PrehledPresenter extends BasePresenter
     {
                  $user =  $this->getUser();
              $reditel=  $this->database->table('nastaveni_global')->where('parametr_1','reditel_skoly')->where('parametr_2',$user->id)->fetch();  
-    if ((!$user->isInRole('4')) and $reditel==FALSE ) {
+   if ((!$user->isInRole('4')) and (!$user->isInRole('3')) and (!$user->isInRole('2'))) {
              $this->redirect('Pristup:pristup');
        }
        
@@ -155,7 +155,7 @@ class PrehledPresenter extends BasePresenter
     {
                  $user =  $this->getUser();
              $reditel=  $this->database->table('nastaveni_global')->where('parametr_1','reditel_skoly')->where('parametr_2',$user->id)->fetch();  
-    if ((!$user->isInRole('4')) and $reditel==FALSE ) {
+    if ((!$user->isInRole('4')) and (!$user->isInRole('3')) and (!$user->isInRole('2'))) {
              $this->redirect('Pristup:pristup');
        }
        

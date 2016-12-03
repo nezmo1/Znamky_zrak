@@ -2,13 +2,13 @@
 // source: E:\xampp2\htdocs\znamky_nette_zrak\sandbox\app/templates/Prehled/portal.latte
 
 // prolog Latte\Macros\CoreMacros
-list($_b, $_g, $_l) = $template->initialize('2261684659', 'html')
+list($_b, $_g, $_l) = $template->initialize('7731195223', 'html')
 ;
 // prolog Latte\Macros\BlockMacros
 //
 // block content
 //
-if (!function_exists($_b->blocks['content'][] = '_lb6b47cacd27_content')) { function _lb6b47cacd27_content($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
+if (!function_exists($_b->blocks['content'][] = '_lbbed45f125a_content')) { function _lbbed45f125a_content($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
 ?><div class="right_col" role="main">
          
             <div class="page-title">
@@ -30,21 +30,11 @@ if (!function_exists($_b->blocks['content'][] = '_lb6b47cacd27_content')) { func
                     
                        
                        
-<?php call_user_func(reset($_b->blocks['title']), $_b, get_defined_vars()) ; if ($reditel!=FALSE or $user->isInRole('4')) { ?>
-<a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link('Prehled:UciteleZnamky'), ENT_COMPAT) ?>
-"><?php } ?>
-
-<img src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>
-/images/notes_ucitele_prehled.png" alt="prehled_znamek"><?php if ($reditel!=FALSE or $user->isInRole('4')) { ?>
-</a><?php } ?>
-
-<?php if ($reditel!=FALSE or $user->isInRole('4')) { ?><a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link('Prehled:UciteleKlasifikace'), ENT_COMPAT) ?>
-"><?php } ?>
-
-<img src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>
-/images/notes_ucitele_klasifikace.png" alt="prehled_znamek"><?php if ($reditel!=FALSE or $user->isInRole('4')) { ?>
-</a><?php } ?>
-
+<?php call_user_func(reset($_b->blocks['title']), $_b, get_defined_vars())  ?>
+<a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link('Prehled:UciteleZnamky'), ENT_COMPAT) ?>">
+<img src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/images/notes_ucitele_prehled.png" alt="prehled_znamek"></a>
+<a href="<?php echo Latte\Runtime\Filters::escapeHtml($_control->link('Prehled:UciteleKlasifikace'), ENT_COMPAT) ?>">
+<img src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/images/notes_ucitele_klasifikace.png" alt="prehled_znamek"></a>
  
 
 <br>
@@ -94,7 +84,7 @@ if (!function_exists($_b->blocks['content'][] = '_lb6b47cacd27_content')) { func
 //
 // block title
 //
-if (!function_exists($_b->blocks['title'][] = '_lbc06dbbcaa3_title')) { function _lbc06dbbcaa3_title($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
+if (!function_exists($_b->blocks['title'][] = '_lb1267c44ac4_title')) { function _lb1267c44ac4_title($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
 ?>                      <h1>Přehled školy</h1>
 <?php
 }}

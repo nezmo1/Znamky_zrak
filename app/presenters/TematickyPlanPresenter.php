@@ -48,6 +48,18 @@ class TematickyPlanPresenter extends BasePresenter
 
     }
 
+    
+      public function renderZak(){
+          $user =  $this->getUser();
+    if ((!$user->isInRole('1')) and (!$user->isInRole('4'))) {
+             $this->redirect('Pristup:pristup');
+       }
+       
+       
+       $this->template->plany = $this->context->TematickyPlanRepository->vyberTematickyPlanZak($user->id);
+       
+
+    }
 
     
     

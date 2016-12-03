@@ -18,16 +18,32 @@ class SestavyPresenter extends BasePresenter
     
 
   
-  protected function createComponentSestavy()
-    {
-        $control = new \Sestavy($this->database);
-
-        return $control;
-    }
+ 
   
   public function renderCvpredmety() {
+            $user =  $this->getUser();
+    if ((!$user->isInRole('4')) and (!$user->isInRole('3')) and (!$user->isInRole('2'))) {
+             $this->redirect('Pristup:pristup');
+       }
+      $vysledek=array();
+      $get=$this->request->getParameters();
       
-
+      $data=$this->database->query("SELECT zak,`".$get['ctvrtleti']."` AS `ctvrtleti`, predmet, predmet.zkratka_predmetu,CONCAT(users.jmeno,' ',users.prijmeni) AS `cele_jmeno`, trida.id_tridy,trida.jmeno_tridy FROM `prum_znamky`
+INNER JOIN predmet ON predmet=predmet.id_predmetu
+INNER JOIN users ON zak=users.id_users
+INNER JOIN trida ON users.trida=trida.id_tridy
+ORDER BY trida.jmeno_tridy, users.prijmeni")->fetchAll();
+      foreach($data as $zak){
+          $vysledek[$zak->zak]['cele_jmeno']=$zak->cele_jmeno;
+          $vysledek[$zak->zak]['trida']=$zak->jmeno_tridy;
+          $vysledek[$zak->zak]['predmet'][$zak->predmet]['nazev']=$zak->zkratka_predmetu;
+          $vysledek[$zak->zak]['predmet'][$zak->predmet][$get['ctvrtleti']]=$zak->ctvrtleti;
+      }
+      
+      
+      
+$this->template->vysledky = $vysledek;
+$this->template->ctvrtleti= $get['ctvrtleti']; 
 }
 
 	public function renderUcitel()

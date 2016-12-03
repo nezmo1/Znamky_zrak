@@ -1,0 +1,322 @@
+<?php
+// source: E:\xampp2\htdocs\znamky_nette_zrak\sandbox\app/templates/TematickyPlan/zak.latte
+
+// prolog Latte\Macros\CoreMacros
+list($_b, $_g, $_l) = $template->initialize('1888358057', 'html')
+;
+// prolog Latte\Macros\BlockMacros
+//
+// block content
+//
+if (!function_exists($_b->blocks['content'][] = '_lb9143c57a50_content')) { function _lb9143c57a50_content($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
+?><script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/js/nette.forms.js"></script>
+<script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/js/nette.ajax.js"></script>
+ <!-- FastClick -->
+    <script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/vendors/nprogress/nprogress.js"></script>
+    <!-- FullCalendar -->
+    <script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/vendors/moment/min/moment.min.js"></script>
+    <script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/vendors/fullcalendar/fullcalendar.min.js"></script>
+    <script src='<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_QUOTES) ?>/vendors/fullcalendar/locale/cs.js'></script>
+     <!-- Custom Theme Scripts -->
+  
+     <!-- FullCalendar -->
+    <link href="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/vendors/fullcalendar/fullcalendar.min.css" rel="stylesheet">
+    <link href="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/vendors/fullcalendar/fullcalendar.print.css" rel="stylesheet" media="print">
+    
+    
+    <script>
+   $(function(){
+    $.nette.init();
+
+    $('select[name=trida]').change(function () {
+        $.nette.ajax({
+            url: <?php echo Latte\Runtime\Filters::escapeJs($_control->link("invalidate!")) ?>,
+            data: {
+                'value': $('select[name=trida]').val(),
+            }
+        });
+    });
+});
+
+
+Nette.toggle = function (id, visible) {
+    var el = $('#' + id);
+    if (visible) {
+        el.slideDown();
+    } else {
+        el.slideUp();
+    }
+};
+
+
+
+
+
+
+
+    </script>
+  
+
+    
+    
+    
+    
+<div class="right_col" role="main" >
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                  
+                 
+                  
+                  
+                <h3 >Tématický plán</h3>
+              </div>
+
+              
+            </div>
+
+            <div class="clearfix"></div>
+            
+            <div class="row">
+              <div class="col-md-12">               
+        <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Kalendář</h2>
+                   
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+
+                    <div id='calendar'></div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /page content -->
+
+        
+        
+ <style>
+ .planyBorder{
+  border-width:  3px !important;
+  font-size: 12px;
+  font-weight: bold;
+}
+    </style>       
+
+        
+        
+
+     <!-- FullCalendar -->
+    <script>
+      $(window).load(function() {
+        var date = new Date(),
+            d = date.getDate(),
+            m = date.getMonth(),
+            y = date.getFullYear(),
+            started,
+            categoryClass;
+
+        var calendar = $('#calendar').fullCalendar({
+          
+          header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,basicWeek,listWeek'
+          },
+          locale: 'cs',
+          selectable: true,
+          selectHelper: true,
+          defaultView: 'basicWeek',
+          weekends: false,
+          
+          select: function(start, end, allDay) {
+            $('#fc_create').click();
+            document.getElementById("single_cal2").value = start.format("DD-MM-YYYY");
+            started = start;
+            ended = end;
+
+            $(".antosubmit").on("click", function() {
+              var title = $("#title").val();
+              if (end) {
+                ended = end;
+              }
+
+              categoryClass = $("#event_type").val();
+
+              if (title) {
+                calendar.fullCalendar('renderEvent', {
+                    title: title,
+                    start: started,
+                    end: end,
+                    allDay: allDay
+                  },
+                  true // make the event "stick"
+                );
+              }
+
+              $('#title').val('');
+
+              calendar.fullCalendar('unselect');
+
+              $('.antoclose').click();
+
+              return false;
+            });
+          },
+          eventClick: function(calEvent, jsEvent, view) {
+              if(calEvent.id==<?php echo Latte\Runtime\Filters::escapeJs($user->id) ?>){
+              $('#fc_edit').click();
+                }
+            
+            $('#title2').val(calEvent.title);
+            $('#ucivo').val(calEvent.ucivo);
+            $('#id_plan').val(calEvent.idPlan);
+            $('#datum_start').val(calEvent.datumStart);
+            $('#datum_end').val(calEvent.datumEnd);
+          if(calEvent.datumEnd!=""){
+               $('#datum_end').slideDown();
+               $('#frm-editTematickyPlan-datum_end_check').prop('checked', true);
+              }
+            else{
+            $('#datum_end').hide();
+               $('#frm-editTematickyPlan-datum_end_check').prop('checked', false);
+                }
+            
+            
+            categoryClass = $("#event_type").val();
+
+            $(".antosubmit2").on("click", function() {
+              calEvent.title = $("#title2").val();
+
+              calendar.fullCalendar('updateEvent', calEvent);
+              $('.antoclose2').click();
+            });
+
+            calendar.fullCalendar('unselect');
+          },
+          editable: false,
+          events: [
+              
+<?php $iterations = 0; foreach ($plany as $plan) { ?>
+                                {
+                           title: <?php echo Latte\Runtime\Filters::escapeJs($plan->cely_popis) ?>,
+                           start: <?php echo Latte\Runtime\Filters::escapeJs(date_format($plan->datum_start,"Y-m-d")) ?>,
+<?php if ($plan->datum_end==NULL) { ?>
+                             end: date,
+<?php } else { ?>
+                             end: <?php echo Latte\Runtime\Filters::escapeJs(date_format($plan->datum_end,"Y-m-d")) ?>,  
+<?php } ?>
+                           textColor: <?php echo Latte\Runtime\Filters::escapeJs($plan->predmet_barva_textu) ?>,
+                           backgroundColor: <?php echo Latte\Runtime\Filters::escapeJs($plan->predmet_barva_pozadi) ?>,
+                           borderColor: <?php echo Latte\Runtime\Filters::escapeJs($plan->trida_barva_ramu) ?>,
+                           className: 'planyBorder',
+                           id: <?php echo Latte\Runtime\Filters::escapeJs($plan->ucitel) ?>,
+                           ucivo: <?php echo Latte\Runtime\Filters::escapeJs($plan->ucivo) ?>,
+                           idPlan: <?php echo Latte\Runtime\Filters::escapeJs($plan->id) ?>,
+                           datumStart: <?php echo Latte\Runtime\Filters::escapeJs(date_format($plan->datum_start,"Y-m-d")) ?>,
+<?php if ($plan->datum_end==NULL) { ?>
+                             datumEnd: '',
+<?php } else { ?>
+                             datumEnd: <?php echo Latte\Runtime\Filters::escapeJs(date_format($plan->datum_end,"Y-m-d")) ?>,  
+<?php } ?>
+                                } ,
+<?php $iterations++; } ?>
+               
+         
+                 ]
+        });
+      });
+    </script>
+    <!-- /FullCalendar -->
+    
+    
+    <!-- bootstrap-daterangepicker -->
+   
+
+   
+    <script>
+      $(document).ready(function() {
+          
+          
+          
+        $('#single_cal1').daterangepicker({
+          singleDatePicker: true,
+          calender_style: "picker_1"
+        }, function(start, end, label) {
+          console.log(start.toISOString(), end.toISOString(), label);
+        });
+        $('.single_cal2').daterangepicker({
+          singleDatePicker: true,
+          calender_style: "picker_2",
+           format: 'DD-MM-YYYY'
+           
+          
+        }, function(start, end, label) {
+          console.log(start.toISOString(), end.toISOString(), label);
+        });
+        $('#single_cal3').daterangepicker({
+          singleDatePicker: true,
+          calender_style: "picker_3"
+        }, function(start, end, label) {
+          console.log(start.toISOString(), end.toISOString(), label);
+        });
+        $('#single_cal4').daterangepicker({
+          singleDatePicker: true,
+          calender_style: "picker_4"
+        }, function(start, end, label) {
+          console.log(start.toISOString(), end.toISOString(), label);
+        });
+      });
+    </script>
+
+    <script>
+      $(document).ready(function() {
+        $('#reservation').daterangepicker(null, function(start, end, label) {
+          console.log(start.toISOString(), end.toISOString(), label);
+        });
+      });
+    </script>
+    <!-- /bootstrap-daterangepicker -->
+
+<?php
+}}
+
+//
+// end of blocks
+//
+
+// template extending
+
+$_l->extends = empty($_g->extended) && isset($_control) && $_control instanceof Nette\Application\UI\Presenter ? $_control->findLayoutTemplateFile() : NULL; $_g->extended = TRUE;
+
+if ($_l->extends) { ob_start();}
+
+// prolog Nette\Bridges\ApplicationLatte\UIMacros
+
+// snippets support
+if (empty($_l->extends) && !empty($_control->snippetMode)) {
+	return Nette\Bridges\ApplicationLatte\UIMacros::renderSnippets($_control, $_b, get_defined_vars());
+}
+
+//
+// main template
+//
+?>
+
+
+<?php if ($_l->extends) { ob_end_clean(); return $template->renderChildTemplate($_l->extends, get_defined_vars()); }
+call_user_func(reset($_b->blocks['content']), $_b, get_defined_vars())  ?>
+
+	
+
+
+    
+  
+  
+

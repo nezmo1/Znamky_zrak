@@ -1,3 +1,68 @@
+<style>
+    table {
+    border-collapse: collapse;
+}
+    table, th, td {
+    border: 1px solid black;
+}
+@page {
+  size: A4;
+  margin: 0;
+}
+@media print {
+  html, body {
+    width: 210mm;
+    height: 297mm;
+  }
+}
+table { page-break-inside:avoid; }
+   tr    { page-break-inside:avoid; page-break-after:auto }
+    </style>
+{foreach $vysledky as $key => $vysledek }
+   
+    <table>
+        <thead><tr><th>{$vysledky[$key]['cele_jmeno']}</th>
+           
+         {foreach $vysledky[$key]['predmet'] as $keyPredmet => $predmet}   
+            <th>{$vysledky[$key]['predmet'][$keyPredmet]['nazev']}</th>
+             {/foreach}
+         </tr>
+          </thead>
+         <tr>
+            <td>{$vysledky[$key]['trida']} <small>(třída)</small></td>
+                
+              {foreach $vysledky[$key]['predmet'] as $keyPredmet => $predmet}   
+                  <td>{if strlen($vysledky[$key]['predmet'][$keyPredmet][$ctvrtleti])<5}{$vysledky[$key]['predmet'][$keyPredmet][$ctvrtleti]}{else}<b>SH</b>{/if}</td>
+             {/foreach}   
+           
 
- 
-{control sestavy}
+         </tr>    
+             
+         
+            
+      
+        
+    </table>
+    
+    {foreach $vysledky[$key]['predmet'] as $keyPredmet => $predmet}
+        {if $iterator->first}<br><table>{/if}
+         
+                 {if strlen($vysledky[$key]['predmet'][$keyPredmet][$ctvrtleti])>5}
+           <tr>
+               <th>{$vysledky[$key]['predmet'][$keyPredmet]['nazev']}</th>
+          
+                 
+              
+            <td>{$vysledky[$key]['predmet'][$keyPredmet][$ctvrtleti]}</td>
+              
+            
+         
+         </tr> 
+         {/if}
+             
+      {if $iterator->last}</table>{/if}
+     {/foreach} 
+        ---<br>
+    
+    
+    {/foreach}
