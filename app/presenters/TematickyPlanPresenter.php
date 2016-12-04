@@ -206,6 +206,49 @@ public function handleInvalidate($value) {
     
     
     
+    
+     protected function createComponentSmazatTematickyPlan($name)
+	{
+     
+ 		$form = new Nette\Application\UI\Form;
+            
+            //    $action_pom='Znamka:novaznamka?tridac='.$tridac;
+            // $form->setAction($this->presenter->link($action_pom));
+
+                
+		
+               
+                 $form->addHidden('id_plan_smazat');
+                
+                        
+               
+                 $form->addSubmit('submit', 'Smazat');
+		// call method signInFormSucceeded() on success
+		$form->onSuccess[] = $this->smazatTematickyPlan;
+                
+                
+ 
+
+
+		return $form;
+	}
+    
+    public function smazatTematickyPlan($form, $values){
+        
+        
+        
+       
+        if($this->database->query('DELETE FROM tematicky_plan WHERE id='.$values->id_plan_smazat)){
+            $this->flashMessage('Tématický plán byl úspěšně smazán.','success');
+        }
+        else{
+            $this->flashMessage('Tématický plán se nepodařilo smazat.','error');
+        }
+        
+        
+    }
+     
+    
 
  
 }

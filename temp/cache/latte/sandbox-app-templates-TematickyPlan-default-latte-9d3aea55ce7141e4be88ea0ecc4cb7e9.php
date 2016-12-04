@@ -2,13 +2,13 @@
 // source: E:\xampp2\htdocs\znamky_nette_zrak\sandbox\app/templates/TematickyPlan/default.latte
 
 // prolog Latte\Macros\CoreMacros
-list($_b, $_g, $_l) = $template->initialize('8224737514', 'html')
+list($_b, $_g, $_l) = $template->initialize('8039057147', 'html')
 ;
 // prolog Latte\Macros\BlockMacros
 //
 // block content
 //
-if (!function_exists($_b->blocks['content'][] = '_lb7d07209e8d_content')) { function _lb7d07209e8d_content($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
+if (!function_exists($_b->blocks['content'][] = '_lbd658486662_content')) { function _lbd658486662_content($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
 ?><script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/js/nette.forms.js"></script>
 <script src="<?php echo Latte\Runtime\Filters::escapeHtml(Latte\Runtime\Filters::safeUrl($basePath), ENT_COMPAT) ?>/js/nette.ajax.js"></script>
  <!-- FastClick -->
@@ -126,7 +126,7 @@ Nette.toggle = function (id, visible) {
 
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h4 class="modal-title" id="myModalLabel">New Calendar Entry</h4>
+            <h4 class="modal-title" id="myModalLabel">Nový tématický plán</h4>
           </div>
           <div class="modal-body">
               
@@ -314,8 +314,15 @@ Nette.toggle = function (id, visible) {
             
           </div>
           <div class="modal-footer">
+              <div style="float: right;">
             <button type="button" class="btn btn-default antoclose2" data-dismiss="modal">Zavřít</button>
             <button type="submit" class="btn btn-primary antosubmit2">Editovat</button>
+            </div>
+<?php Nette\Bridges\FormsLatte\FormMacros::renderFormEnd($_form) ;Nette\Bridges\FormsLatte\FormMacros::renderFormBegin($form = $_form = $_control["smazatTematickyPlan"], array()) ?>
+            <?php echo $_form["id_plan_smazat"]->getControl()->addAttributes(array('id'=>'id_plan_smazat')) ?>
+
+            <?php echo $_form["submit"]->getControl()->addAttributes(array('class'=>'btn btn-danger', 'onclick'=>'return(confirm("Opravdu chcete smazat tento tématický plán?"))')) ?>
+
 <?php Nette\Bridges\FormsLatte\FormMacros::renderFormEnd($_form) ?>
           </div>
         </div>
@@ -393,6 +400,7 @@ Nette.toggle = function (id, visible) {
             $('#title2').val(calEvent.title);
             $('#ucivo').val(calEvent.ucivo);
             $('#id_plan').val(calEvent.idPlan);
+            $('#id_plan_smazat').val(calEvent.idPlan);
             $('#datum_start').val(calEvent.datumStart);
             $('#datum_end').val(calEvent.datumEnd);
           if(calEvent.datumEnd!=""){
@@ -506,7 +514,7 @@ Nette.toggle = function (id, visible) {
 //
 // block _predmet
 //
-if (!function_exists($_b->blocks['_predmet'][] = '_lb1e15726602__predmet')) { function _lb1e15726602__predmet($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v; $_control->redrawControl('predmet', FALSE)
+if (!function_exists($_b->blocks['_predmet'][] = '_lbc51c031ce9__predmet')) { function _lbc51c031ce9__predmet($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v; $_control->redrawControl('predmet', FALSE)
 ?> <?php echo $_form["predmet"]->getControl()->addAttributes(array('class' => 'form-control', 'style' => 'width:100%')) ;
 }}
 

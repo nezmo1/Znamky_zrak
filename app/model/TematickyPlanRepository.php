@@ -79,7 +79,7 @@ GROUP BY users.id_users) ORDER BY predmet.nazev";
                     
                   
                   
-                  if($values->datum_end != ''){
+                  if($values->datum_end_check != FALSE){
                     $date_konec=date_create($values->datum_end);
                   $datum_konec=  date_format($date_konec, 'Y-m-d');  
                   }
@@ -107,7 +107,7 @@ GROUP BY users.id_users) ORDER BY predmet.nazev";
               
                }
                else {
-                   $this->database->query('UPDATE tematicky_plan SET ucivo = "',$values->ucivo,'", datum_start ="',$datum,'" WHERE id ='.$values->id_plan);
+                   $this->database->query('UPDATE tematicky_plan SET ucivo = "',$values->ucivo,'", datum_start ="',$datum,'", datum_end=NULL WHERE id ='.$values->id_plan);
                }
                
                 
