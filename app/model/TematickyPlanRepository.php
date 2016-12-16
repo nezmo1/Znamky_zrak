@@ -134,11 +134,12 @@ GROUP BY ucitele_uvazek.ucitel) ORDER BY predmet.nazev";
                   
                try {
                    
-                   if($existPlan!=FALSE){
-                       
+                   if($existPlan!=FALSE && $existPlan->id!=NULL){
+                          
                        $date2=  date_create($existPlan->datum_start);
                       $datum2=  date_format($date2, 'Y-m-d');
                       $diff = date_diff($date,$date2);
+                      
                        if($diff->days > 0){
                        $this->database->query('UPDATE tematicky_plan SET datum_end ="',$datumEnd,'" WHERE id = ',$existPlan->id);
                    
